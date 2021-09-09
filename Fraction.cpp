@@ -1,0 +1,99 @@
+//
+// Created by 777 on 09.09.2021.
+//
+
+#include "Fraction.h"
+#include <cmath>
+
+Fraction::Fraction() {
+    this->numerator = 1;
+    this->denominator = 1;
+    this->str = nullptr;
+}
+
+
+Fraction::Fraction(int numerator, int denominator) {
+    this->numerator = numerator;
+    this->denominator = denominator;
+    this->str = nullptr;
+    Fraction::reduction();
+    strConstruct();
+}
+
+void Fraction::reduction() {
+    int nod = Fraction::NOD(std::abs(numerator), std::abs(denominator));
+    numerator /= nod;
+    denominator /= nod;
+}
+
+Fraction::Fraction(Fraction &a) {
+    this->numerator = a.numerator;
+    this->denominator = a.denominator;
+    this->str = nullptr;
+    strConstruct();
+}
+
+char *Fraction::getStr() { return this->str; }
+
+void Fraction::strConstruct() {
+    int num, den, nLen, dLen;
+    int buf, i;
+
+    num = numerator;
+    den = denominator;
+    nLen = countCalc(num);
+    dLen = countCalc(den);
+
+    this->str = new char[nLen + dLen + 2];
+    i = 0;
+    if (num < 0) {
+        num = -num;
+        this->str[0] = '-';
+        i++;
+    }
+    if (den < 0) {
+        den = -den;
+        this->str[0] = '-';
+        i++;
+    }
+    buf = num;
+    for (; buf > 0; ++i) {
+        this->str[i] = (char) (buf % 10 + '0');
+        buf = buf / 10;
+    }
+    this->str[i++] = '/';
+
+    buf = den;
+    for (; buf > 0; i++) {
+        this->str[i] = (char) (buf % 10 + '0');
+        buf = buf / 10;
+    }
+    this->str[i] = '\0';
+}
+
+int Fraction::NOD(int a, const int b) {
+    int div;
+    if (a == b) return a;
+    int d = a - b;
+    if (d < 0) {
+        d = -d;
+        div = NOD(a, d);
+    } else
+        div = NOD(b, d);
+    return div;
+}
+
+int Fraction::NOK(const int a, const int b) {
+    return a * b / Fraction::NOD(a, b);
+}
+
+int Fraction::countCalc(int num) {
+    int len;
+
+    len = 0;
+    while (num > 0) {
+        len++;
+        num = num / 10;
+    }
+    return len;
+}
