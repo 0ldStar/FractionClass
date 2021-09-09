@@ -35,7 +35,7 @@ public:
         strConstruct();
         return *this;
     }
-
+    operator float() const;
     ~Fraction();
 
 private:

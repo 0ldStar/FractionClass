@@ -15,6 +15,7 @@ TEST_CASE("Fractions class is worked", "[Square]")
     REQUIRE(strcmp("1/3", a.getStr()) == 0);
     REQUIRE(strcmp("-1/4", b.getStr()) == 0);
     REQUIRE(strcmp("1/2", c.getStr()) == 0);
+    REQUIRE(0.5f == (float)c);
     a = b / c;
     REQUIRE(strcmp("-1/2", a.getStr()) == 0);
     a = b * c;

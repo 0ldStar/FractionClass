@@ -69,6 +69,8 @@ Fraction operator/(const Fraction &left, const Fraction &right) {
     return result;
 }
 
+Fraction::operator float() const { return (float) this->numerator / (float) this->denominator; }
+
 char *Fraction::getStr() { return this->str; }
 
 void Fraction::strConstruct() {
