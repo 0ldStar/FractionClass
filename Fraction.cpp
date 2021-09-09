@@ -20,10 +20,8 @@ Fraction::Fraction(int numerator, int denominator) {
     strConstruct();
 }
 
-void Fraction::reduction() {
-    int nod = Fraction::NOD(std::abs(numerator), std::abs(denominator));
-    numerator /= nod;
-    denominator /= nod;
+Fraction::~Fraction() {
+    delete[]this->str;
 }
 
 Fraction::Fraction(Fraction &a) {
@@ -31,6 +29,44 @@ Fraction::Fraction(Fraction &a) {
     this->denominator = a.denominator;
     this->str = nullptr;
     strConstruct();
+}
+
+void Fraction::reduction() {
+    int nod = Fraction::NOD(std::abs(numerator), std::abs(denominator));
+    numerator /= nod;
+    denominator /= nod;
+}
+
+Fraction operator-(const Fraction &left, const Fraction &right) {
+    int den, num;
+    den = Fraction::NOK(left.denominator, right.denominator);
+    num = left.numerator * den / left.denominator -
+          right.numerator * den / right.denominator;
+    Fraction result(num, den);
+    result.reduction();
+    return result;
+}
+
+Fraction operator+(const Fraction &left, const Fraction &right) {
+    int den, num;
+    den = Fraction::NOK(left.denominator, right.denominator);
+    num = left.numerator * den / left.denominator +
+          right.numerator * den / right.denominator;
+    Fraction result(num, den);
+    result.reduction();
+    return result;
+}
+
+Fraction operator*(const Fraction &left, const Fraction &right) {
+    Fraction result(left.numerator * right.numerator, left.denominator * right.denominator);
+    result.reduction();
+    return result;
+}
+
+Fraction operator/(const Fraction &left, const Fraction &right) {
+    Fraction result(left.numerator * right.denominator, left.denominator * right.numerator);
+    result.reduction();
+    return result;
 }
 
 char *Fraction::getStr() { return this->str; }
