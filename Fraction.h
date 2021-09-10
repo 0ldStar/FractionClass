@@ -5,7 +5,11 @@
 #ifndef LABA3_1_5_FRACTION_H
 #define LABA3_1_5_FRACTION_H
 
+#include <iostream>
 #include <cstring>
+#include <fstream>
+
+using namespace std;
 
 class Fraction {
 public:
@@ -25,6 +29,20 @@ public:
 
     friend Fraction operator/(const Fraction &left, const Fraction &right);
 
+    friend ostream &operator<<(ostream &os, const Fraction &p);
+
+    friend istream &operator>>(istream &is, Fraction &p);
+
+    friend ofstream &operator<<(ofstream &os, Fraction &one);
+
+    friend ifstream &operator>>(ifstream &is, Fraction &one);
+    void binary() {
+        ifstream emp_fileOut("../binaryIn.dat");
+        emp_fileOut.read((char *) this, sizeof(Fraction));
+        this->strConstruct();
+        emp_fileOut.close();
+
+    }
     Fraction &operator=(const Fraction &right) {
         if (this == &right) {
             return *this;
@@ -35,7 +53,9 @@ public:
         strConstruct();
         return *this;
     }
+
     operator float() const;
+
     ~Fraction();
 
 private:

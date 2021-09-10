@@ -1,33 +1,39 @@
-#define CATCH_CONFIG_MAIN
+//#define CATCH_CONFIG_RUNNER
 
-#include "catch.hpp"
+//#include "catch.hpp"
 #include <iostream>
 #include <cstring>
 #include "Fraction.h"
-#include <iostream>
+#include <fstream>
 
-TEST_CASE("Fractions class is worked", "[Square]")
-{
-    using namespace std;
-    Fraction a(11, 33);
-    Fraction b(-1, 4);
-    Fraction c(1, 2);
-    REQUIRE(strcmp("1/3", a.getStr()) == 0);
-    REQUIRE(strcmp("-1/4", b.getStr()) == 0);
-    REQUIRE(strcmp("1/2", c.getStr()) == 0);
-    REQUIRE(0.5f == (float)c);
-    a = b / c;
-    REQUIRE(strcmp("-1/2", a.getStr()) == 0);
-    a = b * c;
-    REQUIRE(strcmp("-1/8", a.getStr()) == 0);
-    a = b + c;
-    REQUIRE(strcmp("1/4", a.getStr()) == 0);
-    a = b - c;
-    REQUIRE(strcmp("-3/4", a.getStr()) == 0);
-    Fraction d;
-    d = a;
-    a = b;
-    REQUIRE(strcmp("-3/4", d.getStr()) == 0);
+using namespace std;
+
+int main() {
+    //Catch::Session().run();
+    Fraction a(3, 4);
+    ofstream fileOut;
+    fileOut.open("../write.txt", ofstream::app);
+    if (!fileOut.is_open()) {
+        std::cerr << "fileOut open failed: " << std::strerror(errno) << "\n";
+        return 1;
+    }
+    fileOut << a << endl;
+    fileOut.close();
+    ifstream fileIn("../read.txt", ofstream::app);
+    if (!fileIn.is_open()) {
+        std::cerr << "fileOut open failed: " << std::strerror(errno) << "\n";
+        return 1;
+    }
+    fileIn >> a;
+    fileIn.close();
+    cout << a << endl;
+    ofstream emp_fileIn("../binaryIn.dat") ;   // запись в файл структуры
+    emp_fileIn.write((char *) &a, sizeof(Fraction));
+    emp_fileIn.close();
+
+    Fraction b;
+    b.binary();
+    cout << "binary " << b;
+    return 0;
 }
-
 

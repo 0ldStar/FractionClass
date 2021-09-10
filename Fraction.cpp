@@ -4,6 +4,8 @@
 
 #include "Fraction.h"
 #include <cmath>
+#include <iostream>
+#include <fstream>
 
 Fraction::Fraction() {
     this->numerator = 1;
@@ -70,6 +72,29 @@ Fraction operator/(const Fraction &left, const Fraction &right) {
 }
 
 Fraction::operator float() const { return (float) this->numerator / (float) this->denominator; }
+
+ostream &operator<<(ostream &os, const Fraction &one) {
+    os << one.str;
+    return os;
+}
+
+istream &operator>>(istream &is, Fraction &one) {
+    is >> one.numerator >> one.denominator;
+    one.strConstruct();
+    return is;
+}
+
+ofstream &operator<<(ofstream &os, Fraction &one) {
+    os << one.str;
+    return os;
+}
+
+ifstream &operator>>(ifstream &is, Fraction &one) {
+    char c;
+    is >> one.numerator >> c >> one.denominator;
+    one.strConstruct();
+    return is;
+}
 
 char *Fraction::getStr() { return this->str; }
 
