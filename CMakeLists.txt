@@ -3,7 +3,7 @@ project(laba3_1_5)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(laba3_1_5 main.cpp Fraction.cpp Fraction.h )
+add_executable(laba3_1_5 main.cpp Fraction.cpp Fraction.h MixedFractions.cpp MixedFractions.h CompleteFreacion.cpp CompleteFreacion.h)
 
 #find_package(Catch2 3 REQUIRED)
 # These tests can use the Catch2-provided main

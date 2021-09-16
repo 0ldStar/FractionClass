@@ -3,8 +3,10 @@
 //
 
 #include "Fraction.h"
+
 #include <cmath>
 #include <iostream>
+#include <charconv>
 #include <fstream>
 
 Fraction::Fraction() {
@@ -71,6 +73,7 @@ Fraction operator/(const Fraction &left, const Fraction &right) {
     return result;
 }
 
+
 Fraction::operator float() const { return (float) this->numerator / (float) this->denominator; }
 
 ostream &operator<<(ostream &os, const Fraction &one) {
@@ -99,44 +102,39 @@ ifstream &operator>>(ifstream &is, Fraction &one) {
 char *Fraction::getStr() { return this->str; }
 
 void Fraction::strConstruct() {
-    int num, den, nLen, dLen;
-    int buf, i;
+    int num, den, nLen, dLen, i;
 
     num = numerator;
     den = denominator;
     nLen = countCalc(num);
     dLen = countCalc(den);
-
+    delete[] this->str;
     this->str = new char[nLen + dLen + 2];
     i = 0;
     if (num < 0) {
         num = -num;
         this->str[0] = '-';
+        nLen--;
         i++;
     }
     if (den < 0) {
         den = -den;
         this->str[0] = '-';
+        dLen--;
         i++;
     }
-    buf = num;
-    for (; buf > 0; ++i) {
-        this->str[i] = (char) (buf % 10 + '0');
-        buf = buf / 10;
-    }
+    std::to_chars(this->str + i, this->str + i + nLen, num);
+    i += nLen;
     this->str[i++] = '/';
-
-    buf = den;
-    for (; buf > 0; i++) {
-        this->str[i] = (char) (buf % 10 + '0');
-        buf = buf / 10;
-    }
+    std::to_chars(this->str + i, this->str + i + dLen, den);
+    i += dLen;
     this->str[i] = '\0';
 }
 
 int Fraction::NOD(int a, const int b) {
     int div;
     if (a == b) return a;
+    if (a == 0 || b == 0) return 1;
     int d = a - b;
     if (d < 0) {
         d = -d;
@@ -154,6 +152,10 @@ int Fraction::countCalc(int num) {
     int len;
 
     len = 0;
+    if (num < 0) {
+        len++;
+        num = -num;
+    }
     while (num > 0) {
         len++;
         num = num / 10;

@@ -58,12 +58,12 @@ public:
 
     ~Fraction();
 
-private:
+    static int NOK(int a, int b);
+
+protected:
     void reduction();
 
     static int NOD(int a, int b);
-
-    static int NOK(int a, int b);
 
     void strConstruct();
 
@@ -72,6 +72,7 @@ private:
     int numerator;
     int denominator;
     char *str;
+
 };
 
 
