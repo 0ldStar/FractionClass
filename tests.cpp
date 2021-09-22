@@ -26,8 +26,5 @@ TEST_CASE("Fractions class is worked", "[Square]")
     d = a;
     a = b;
     REQUIRE(strcmp("-3/4", d.getStr()) == 0);
-    Fraction e;
-    cin >> e;
-    cout << e;
 
 }

@@ -1,14 +1,12 @@
-//#define CATCH_CONFIG_RUNNER
+#define CATCH_CONFIG_MAIN
 
-//#include "catch.hpp"
+#include "catch.hpp"
 #include <iostream>
 #include <cstring>
 #include <fstream>
 #include "Fraction.h"
-#include "CompleteFreacion.h"
-#include "MixedFractions.h"
-
 using namespace std;
+/*
 
 int main() {
     //Catch::Session().run();
@@ -48,4 +46,5 @@ int main() {
 
     return 0;
 }
+*/
 
