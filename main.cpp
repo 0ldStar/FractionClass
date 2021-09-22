@@ -1,6 +1,6 @@
-//#define CATCH_CONFIG_RUNNER
+#define CATCH_CONFIG_MAIN
 
-//#include "catch.hpp"
+#include "catch.hpp"
 #include <iostream>
 #include <cstring>
 #include "Fraction.h"
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main() {
+/*int main() {
     //Catch::Session().run();
     Fraction a(3, 4);
     ofstream fileOut;
@@ -35,5 +35,5 @@ int main() {
     b.binary();
     cout << "binary " << b;
     return 0;
-}
+}*/
 

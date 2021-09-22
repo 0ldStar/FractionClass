@@ -1,6 +1,3 @@
-//
-// Created by 777 on 10.09.2021.
-//
 #include "catch.hpp"
 #include "Fraction.h"
 
@@ -26,8 +23,8 @@ TEST_CASE("Fractions class is worked", "[Square]")
     d = a;
     a = b;
     REQUIRE(strcmp("-3/4", d.getStr()) == 0);
-    Fraction e;
+    /*Fraction e;
     cin >> e;
-    cout << e;
+    cout << e;*/
 
 }
