@@ -13,57 +13,55 @@ using namespace std;
 
 class Fraction {
 public:
+    // Конструктор по умолчанию
     Fraction();
 
+    //Конструктор коппирования
     Fraction(Fraction &a);
 
+    //Конструктор с параметрами
     Fraction(int numerator, int denominator);
 
+    //Метод получения поля строкового представления объекта
     char *getStr();
 
+    //перегруженный оператор сложения
     friend Fraction operator+(const Fraction &left, const Fraction &right);
 
+    //перегруженный оператор вычетания
     friend Fraction operator-(const Fraction &left, const Fraction &right);
 
+    //перегруженный оператор умножения
     friend Fraction operator*(const Fraction &left, const Fraction &right);
 
+    //перегруженный оператор деления
     friend Fraction operator/(const Fraction &left, const Fraction &right);
 
-    friend ostream &operator<<(ostream &os, const Fraction &p);
-
-    friend istream &operator>>(istream &is, Fraction &p);
-
-    friend ofstream &operator<<(ofstream &os, Fraction &one);
-
-    friend ifstream &operator>>(ifstream &is, Fraction &one);
-
-    /*void binary() {
-        ifstream emp_fileOut("../binaryIn.dat");
-        emp_fileOut.read((char *) this, sizeof(Fraction));
-        this->strConstruct();
-        emp_fileOut.close();
-
-    }*/
+    //перегруженный оперетор присвоения
     Fraction &operator=(const Fraction &right);
 
-    operator float() const;
-
+//детсруктор
     ~Fraction();
 
 private:
+    //метод сокращения дроби
     void reduction();
 
+    //статичный метод определения НОД
     static int NOD(int a, int b);
 
+    //статичный метод определения НОК
     static int NOK(int a, int b);
 
+    //метод построения строкового представления
     void strConstruct();
 
+    //статичный метод подсчета количества цифр в числе
     static int countCalc(int num);
 
-    int numerator;
-    int denominator;
-    char *str;
+    int numerator; //поле числителя
+    int denominator; //поле знаменателя
+    char *str; //поле строкового представления
 };
 
 
