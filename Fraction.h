@@ -40,6 +40,9 @@ public:
     //перегруженный оперетор присвоения
     Fraction &operator=(const Fraction &right);
 
+    //операция приведения к типу float
+    operator float() const;
+
 //детсруктор
     ~Fraction();
 
