@@ -43,16 +43,7 @@ public:
         emp_fileOut.close();
 
     }
-    Fraction &operator=(const Fraction &right) {
-        if (this == &right) {
-            return *this;
-        }
-        this->denominator = right.denominator;
-        this->numerator = right.numerator;
-        reduction();
-        strConstruct();
-        return *this;
-    }
+    Fraction &operator=(const Fraction &right);
 
     operator float() const;
 
