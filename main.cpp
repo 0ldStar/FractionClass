@@ -5,7 +5,7 @@
 #include <cstring>
 #include <fstream>
 #include "Fraction.h"
-#include "CompleteFreacion.h"
+#include "CompleteFracion.h"
 #include "MixedFractions.h"
 
 using namespace std;
@@ -35,7 +35,7 @@ int main() {
     Fraction b;
     b.binary();
     cout << "binary " << b << endl;
-    CompleteFreacion d(1, 3);
+    CompleteFracion d(1, 3);
     cout << d.getRez() << endl;
     MixedFractions f(3, 2, 7);
     MixedFractions e(1, 1, 2);
