@@ -58,13 +58,13 @@ public:
     //перегруженный оперетор перенаправления ввода из файла
     friend ifstream &operator>>(ifstream &is, Fraction &one);
 
-    /*void binary() {
-        ifstream emp_fileOut("../binaryIn.dat");
+    void binary() {
+        ifstream emp_fileOut("../binaryIn.dat", ios::binary);
         emp_fileOut.read((char *) this, sizeof(Fraction));
         this->strConstruct();
         emp_fileOut.close();
 
-    }*/
+    }
 
 private:
     //метод сокращения дроби
