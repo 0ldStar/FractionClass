@@ -27,11 +27,7 @@ void MixedFractions::strConstruct() {
     }
 
     std::to_chars(buf + i, buf + i + len, num);
-    i += len;/*
-    for (; num > 0; ++i) {
-        buf[i] = (char) (num % 10 + '0');
-        num = num / 10;
-    }*/
+    i += len;
     buf[i++] = '|';
     buf[i] = '\0';
     strcat(buf, this->str);
@@ -95,7 +91,21 @@ MixedFractions operator/(const MixedFractions &left, const MixedFractions &right
     return result;
 }
 
-MixedFractions::operator float() const { return (float) (this->numerator + this->integer * this->denominator) / (float) this->denominator; }
+MixedFractions &MixedFractions::operator=(const MixedFractions &right) {
+    if (this == &right) {
+        return *this;
+    }
+    this->denominator = right.denominator;
+    this->numerator = right.numerator;
+    this->integer = right.integer;
+    reduction();
+    strConstruct();
+    return *this;
+}
+
+MixedFractions::operator float() const {
+    return (float) (this->numerator + this->integer * this->denominator) / (float) this->denominator;
+}
 
 
 
