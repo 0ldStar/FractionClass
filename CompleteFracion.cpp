@@ -5,15 +5,15 @@
 #include "CompleteFracion.h"
 
 CompleteFracion::CompleteFracion() : Fraction() {
-    this->rez = 1;
+    this->res = 1;
 }
 
 CompleteFracion::CompleteFracion(int numerator, int denominator) : Fraction(numerator, denominator) {
-    this->rez = numerator / (double) denominator;
+    this->res = numerator / (double) denominator;
 }
 
 CompleteFracion::CompleteFracion(CompleteFracion &a) : CompleteFracion(a.numerator, a.denominator) {}
 
 
 
-double CompleteFracion::getRez() { return this->rez; }
+double CompleteFracion::getRes() { return this->res; }

@@ -72,7 +72,8 @@ Fraction operator/(const Fraction &left, const Fraction &right) {
     result.reduction();
     return result;
 }
-Fraction& Fraction::operator=(const Fraction &right) {
+
+Fraction &Fraction::operator=(const Fraction &right) {
     if (this == &right) {
         return *this;
     }

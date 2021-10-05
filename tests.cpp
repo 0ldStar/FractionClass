@@ -6,6 +6,7 @@
 
 TEST_CASE("Fractions class is worked", "[Square]")
 {
+
     using namespace std;
     Fraction a(11, 33);
     Fraction b(-1, 4);
