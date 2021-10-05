@@ -8,6 +8,7 @@
 #include <iostream>
 #include <charconv>
 #include <fstream>
+#include <exception>
 
 Fraction::Fraction() {
     this->numerator = 1;
@@ -17,6 +18,7 @@ Fraction::Fraction() {
 
 
 Fraction::Fraction(int numerator, int denominator) {
+    if (denominator == 0) throw std::exception();
     this->numerator = numerator;
     this->denominator = denominator;
     this->str = nullptr;
@@ -68,6 +70,7 @@ Fraction operator*(const Fraction &left, const Fraction &right) {
 }
 
 Fraction operator/(const Fraction &left, const Fraction &right) {
+    if (right.numerator == 0) throw std::exception();
     Fraction result(left.numerator * right.denominator, left.denominator * right.numerator);
     result.reduction();
     return result;

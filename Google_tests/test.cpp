@@ -16,6 +16,7 @@ TEST(lab1, constructorTests) {
     Fraction c(1, 2);
     Fraction d;
 
+    ASSERT_THROW(Fraction e(1, 0), exception);
     ASSERT_STREQ(a.getStr(), "1/3");
     ASSERT_STREQ(b.getStr(), "-1/4");
     ASSERT_STREQ(c.getStr(), "1/2");
@@ -36,6 +37,7 @@ TEST(lab2, arifmeticOperationTests) {
     Fraction a(11, 33);
     Fraction b(-1, 4);
     Fraction c(1, 2);
+    Fraction d(0, 1);
 
     a = b / c;
     ASSERT_STREQ(a.getStr(), "-1/2");
@@ -45,6 +47,8 @@ TEST(lab2, arifmeticOperationTests) {
     ASSERT_STREQ(a.getStr(), "1/4");
     a = b - c;
     ASSERT_STREQ(a.getStr(), "-3/4");
+
+    ASSERT_THROW(a / d, exception);
 }
 
 TEST(lab3, fileSteamTest) {
@@ -82,6 +86,7 @@ TEST(lab4, CompleteFractionsConstructorTests) {
     CompleteFracion c(1, 2);
     CompleteFracion d;
 
+    ASSERT_THROW(CompleteFracion e(1, 0), exception);
     ASSERT_STREQ(a.getStr(), "1/3");
     ASSERT_STREQ(b.getStr(), "-1/4");
     ASSERT_STREQ(c.getStr(), "1/2");
@@ -107,6 +112,7 @@ TEST(lab4, MixedFractionsConstructorTests) {
     MixedFractions c(-3, 1, 2);
     MixedFractions d;
 
+    ASSERT_THROW(MixedFractions e(1, 1, 0), exception);
     ASSERT_STREQ(a.getStr(), "1|1/3");
     ASSERT_STREQ(b.getStr(), "2|-1/4");
     ASSERT_STREQ(c.getStr(), "-3|1/2");
@@ -116,10 +122,12 @@ TEST(lab4, MixedFractionsConstructorTests) {
 }
 
 
-TEST(laba4, MixedFractionsArifmeticOperationsTests) {
+TEST(lab4, MixedFractionsArifmeticOperationsTests) {
     MixedFractions a;
     MixedFractions b(2, -1, 4);
     MixedFractions c(-3, 1, 2);
+    MixedFractions d(-3, 0, 2);
+
 
     a = b / c;
     ASSERT_STREQ(a.getStr(), "|-7/10");
@@ -129,4 +137,6 @@ TEST(laba4, MixedFractionsArifmeticOperationsTests) {
     ASSERT_STREQ(a.getStr(), "|-3/4");
     a = b - c;
     ASSERT_STREQ(a.getStr(), "4|1/4");
+
+    ASSERT_THROW(a / d, exception);
 }

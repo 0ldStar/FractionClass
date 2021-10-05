@@ -85,6 +85,7 @@ MixedFractions operator*(const MixedFractions &left, const MixedFractions &right
 }
 
 MixedFractions operator/(const MixedFractions &left, const MixedFractions &right) {
+    if (right.numerator == 0) throw std::exception();
     MixedFractions result(0, (left.numerator + left.integer * left.denominator) * right.denominator,
                           (right.numerator + right.integer * right.denominator) * left.denominator);
     result.reduction();
