@@ -95,18 +95,7 @@ ostream &operator<<(ostream &os, const Fraction &one) {
 }
 
 istream &operator>>(istream &is, Fraction &one) {
-    is >> one.numerator >> one.denominator;
-    one.strConstruct();
-    return is;
-}
-
-ofstream &operator<<(ofstream &os, Fraction &one) {
-    os << one.str;
-    return os;
-}
-
-ifstream &operator>>(ifstream &is, Fraction &one) {
-    char c;
+    char c = ' ';
     is >> one.numerator >> c >> one.denominator;
     one.strConstruct();
     return is;

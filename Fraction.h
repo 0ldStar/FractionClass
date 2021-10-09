@@ -33,16 +33,6 @@ public:
 
     friend istream &operator>>(istream &is, Fraction &p);
 
-    friend ofstream &operator<<(ofstream &os, Fraction &one);
-
-    friend ifstream &operator>>(ifstream &is, Fraction &one);
-    void binary() {
-        ifstream emp_fileOut("../binaryIn.dat");
-        emp_fileOut.read((char *) this, sizeof(Fraction));
-        this->strConstruct();
-        emp_fileOut.close();
-
-    }
     Fraction &operator=(const Fraction &right);
 
     operator float() const;

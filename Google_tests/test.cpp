@@ -76,6 +76,26 @@ TEST(lab3, fileSteamTest) {
     fileIn >> c;
     ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
     fileIn.close();
+
+    ofstream binIn("../binaryIn.dat", ios::binary);
+    if (!binIn.is_open()) {
+        std::cerr << "binIn open failed: " << std::strerror(errno) << "\n";
+        ASSERT_TRUE(0);
+    }
+    binIn << a << endl;
+    binIn << b << endl;
+    binIn.close();
+
+    ifstream binOut("../binaryIn.dat", ios::binary);
+    if (!binOut.is_open()) {
+        std::cerr << "binOut open failed: " << std::strerror(errno) << "\n";
+        ASSERT_TRUE(0);
+    }
+    binOut >> c;
+    ASSERT_TRUE(!strcmp(a.getStr(), c.getStr()));
+    binOut >> c;
+    ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
+    binOut.close();
 }
 
 
