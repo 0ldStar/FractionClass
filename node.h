@@ -7,12 +7,14 @@
 
 #include "Fraction.h"
 
+template<typename T>
+
 struct node {
     node *prev;
     node *next;
-    Fraction &fraction;
+    T &t;
 
-    node(Fraction &_fraction) : prev(nullptr), next(nullptr), fraction(_fraction) {}
+    node(T &_T) : prev(nullptr), next(nullptr), t(_T) {}
 };
 
 #endif //LABA3_1_5_NODE_H

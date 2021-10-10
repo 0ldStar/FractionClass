@@ -9,15 +9,16 @@
 #include "Fraction.h"
 #include <optional>
 
-// template
+template<typename T>
+
 class List {
 public:
     List() : begin(nullptr), end(nullptr) {}
 
     bool isEmpty() { return begin == nullptr; }
 
-    void pushBack(Fraction &_fraction) {
-        auto *tmp = new node(_fraction);
+    void pushBack(T &_T) {
+        auto *tmp = new node(_T);
         if (isEmpty()) {
             begin = tmp;
             end = tmp;
@@ -27,8 +28,8 @@ public:
         }
     }
 
-    void pushFront(Fraction &_fraction) {
-        auto *tmp = new node(_fraction);
+    void pushFront(T &_T) {
+        auto *tmp = new node(_T);
         if (isEmpty()) {
             begin = tmp;
             end = tmp;
@@ -40,26 +41,26 @@ public:
 
     }
 
-    Fraction &operator[](int i) {
+    T &operator[](int i) {
         if (begin == end) throw exception();
-        node *tmp = begin;
+        node<T> *tmp = begin;
         for (int j = 0; j < i; ++j) {
             tmp = tmp->next;
             if (tmp == nullptr) throw exception();
         }
-        return tmp->fraction;
+        return tmp->t;
     }
 
     void popFront() {
         if (isEmpty()) return;
-        node *tmp = begin;
+        node<T> *tmp = begin;
         begin = tmp->next;
         delete tmp;
     }
 
 private:
-    node *begin;
-    node *end;
+    node<T> *begin;
+    node<T> *end;
 };
 
 #endif //LABA3_1_5_LIST_H
