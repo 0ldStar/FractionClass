@@ -164,3 +164,9 @@ int Fraction::countCalc(int num) {
     }
     return len;
 }
+
+Fraction::Fraction(Fraction const &b) {
+    numerator = b.numerator;
+    denominator = b.denominator;
+    str = b.str;
+}

@@ -5,6 +5,7 @@
 #include "../Fraction.h"
 #include "../CompleteFracion.h"
 #include "../MixedFractions.h"
+#include "../List.h"
 #include <iostream>
 
 #include <fstream>
@@ -159,4 +160,26 @@ TEST(lab4, MixedFractionsArifmeticOperationsTests) {
     ASSERT_STREQ(a.getStr(), "4|1/4");
 
     ASSERT_THROW(a / d, exception);
+}
+
+TEST(lab5, stackTest) {
+    List List;
+    Fraction a(1, 3);
+    Fraction b(1, 6);
+    MixedFractions c(1, 1, 6);
+    MixedFractions d(-3, 1, 7);
+    CompleteFracion e(5, 7);
+    CompleteFracion f(9, 27);
+    List.pushFront(a);
+    List.pushFront(b);
+    List.pushFront(c);
+    List.pushFront(d);
+    List.pushFront(e);
+    List.pushFront(f);
+    ASSERT_STREQ(List[0].getStr(), "1/3");
+    ASSERT_STREQ(List[1].getStr(), "5/7");
+    ASSERT_STREQ(List[2].getStr(), "-3|1/7");
+    ASSERT_STREQ(List[3].getStr(), "1|1/6");
+    ASSERT_STREQ(List[4].getStr(), "1/6");
+    ASSERT_STREQ(List[5].getStr(), "1/3");
 }
