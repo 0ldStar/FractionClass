@@ -14,6 +14,4 @@ CompleteFracion::CompleteFracion(int numerator, int denominator) : Fraction(nume
 
 CompleteFracion::CompleteFracion(CompleteFracion &a) : CompleteFracion(a.numerator, a.denominator) {}
 
-
-
 double CompleteFracion::getRes() { return this->res; }
