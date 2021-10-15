@@ -7,6 +7,9 @@
 #include "../MixedFractions.h"
 #include "../List.h"
 #include <iostream>
+#include <queue>
+#include <map>
+#include <ctime>
 
 #include <fstream>
 
@@ -213,3 +216,39 @@ TEST(lab7, FloatStackTest) {
     ASSERT_FLOAT_EQ(floatList[0], 2.2);
     ASSERT_FLOAT_EQ(floatList[1], 1.1);
 }
+
+TEST(lab8, intQueue) {
+    queue<int> q;
+    q.push(1);
+    ASSERT_EQ(q.front(), 1);
+    q.push(2);
+    q.pop();
+    ASSERT_EQ(q.front(), 2);
+    srand(time(nullptr));
+    int start = clock();
+    for (int i = 0; i < 10000; ++i) {
+        q.push(rand() % 10000);
+    }
+
+    int end = clock();
+    cout << end - start;
+}
+/*
+
+TEST(lab8, intMap) {
+    map<int, int> q;
+    q.push(1);
+    ASSERT_EQ(q.front(), 1);
+    q.push(2);
+    q.pop();
+    ASSERT_EQ(q.front(), 2);
+    srand(time(nullptr));
+    int start = clock();
+    for (int i = 0; i < 10000; ++i) {
+        q.push(rand() % 10000);
+    }
+
+    int end = clock();
+    cout << end - start;
+}
+*/
