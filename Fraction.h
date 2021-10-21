@@ -35,6 +35,10 @@ public:
 
     friend istream &operator>>(istream &is, Fraction &p);
 
+    void readFromBinary(istream &is);
+
+    void writeInBinary(ostream &os);
+
     Fraction &operator=(const Fraction &right);
 
     operator float() const;
