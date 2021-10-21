@@ -75,23 +75,22 @@ TEST(lab3, fileSteamTest) {
     ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
     fileIn.close();
 
-    ofstream binIn("../binaryIn.dat", ios::binary);
-    if (!binIn.is_open()) {
-        std::cerr << "binIn open failed: " << std::strerror(errno) << "\n";
-        ASSERT_TRUE(0);
-    }
-    binIn << a << endl;
-    binIn << b << endl;
-    binIn.close();
-
-    ifstream binOut("../binaryIn.dat", ios::binary);
+    ofstream binOut("../readFromBinary.dat", ios::out | ios::binary | ios::app);
     if (!binOut.is_open()) {
         std::cerr << "binOut open failed: " << std::strerror(errno) << "\n";
         ASSERT_TRUE(0);
     }
-    binOut >> c;
-    ASSERT_TRUE(!strcmp(a.getStr(), c.getStr()));
-    binOut >> c;
-    ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
+    a.writeInBinary(binOut);
+    b.writeInBinary(binOut);
     binOut.close();
+    ifstream binIn("../readFromBinary.dat", ios::in | ios::binary);
+    if (!binIn.is_open()) {
+        std::cerr << "binIn open failed: " << std::strerror(errno) << "\n";
+        ASSERT_TRUE(0);
+    }
+    c.readFromBinary(binIn);
+    ASSERT_TRUE(!strcmp(a.getStr(), c.getStr()));
+    c.readFromBinary(binIn);
+    ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
+    binIn.close();
 }
