@@ -8,6 +8,7 @@
 #include <iostream>
 #include <charconv>
 #include <fstream>
+#include <exception>
 
 Fraction::Fraction() {
     this->numerator = 1;
@@ -17,6 +18,7 @@ Fraction::Fraction() {
 
 
 Fraction::Fraction(int numerator, int denominator) {
+    if (denominator == 0) throw std::exception();
     this->numerator = numerator;
     this->denominator = denominator;
     this->str = nullptr;
@@ -68,11 +70,13 @@ Fraction operator*(const Fraction &left, const Fraction &right) {
 }
 
 Fraction operator/(const Fraction &left, const Fraction &right) {
+    if (right.numerator == 0) throw std::exception();
     Fraction result(left.numerator * right.denominator, left.denominator * right.numerator);
     result.reduction();
     return result;
 }
-Fraction& Fraction::operator=(const Fraction &right) {
+
+Fraction &Fraction::operator=(const Fraction &right) {
     if (this == &right) {
         return *this;
     }
@@ -91,18 +95,7 @@ ostream &operator<<(ostream &os, const Fraction &one) {
 }
 
 istream &operator>>(istream &is, Fraction &one) {
-    is >> one.numerator >> one.denominator;
-    one.strConstruct();
-    return is;
-}
-
-ofstream &operator<<(ofstream &os, Fraction &one) {
-    os << one.str;
-    return os;
-}
-
-ifstream &operator>>(ifstream &is, Fraction &one) {
-    char c;
+    char c = ' ';
     is >> one.numerator >> c >> one.denominator;
     one.strConstruct();
     return is;
@@ -170,4 +163,10 @@ int Fraction::countCalc(int num) {
         num = num / 10;
     }
     return len;
+}
+
+Fraction::Fraction(Fraction const &b) {
+    numerator = b.numerator;
+    denominator = b.denominator;
+    str = b.str;
 }

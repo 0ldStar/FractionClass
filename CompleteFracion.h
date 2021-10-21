@@ -17,7 +17,7 @@ public:
     double getRes();
 
 private:
-    double rez;
+    double res;
 };
 
 
