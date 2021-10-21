@@ -78,25 +78,24 @@ TEST(lab3, fileSteamTest) {
     ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
     fileIn.close();
 
-    ofstream binIn("../binaryIn.dat", ios::binary);
-    if (!binIn.is_open()) {
-        std::cerr << "binIn open failed: " << std::strerror(errno) << "\n";
-        ASSERT_TRUE(0);
-    }
-    binIn << a << endl;
-    binIn << b << endl;
-    binIn.close();
-
-    ifstream binOut("../binaryIn.dat", ios::binary);
+    ofstream binOut("../readFromBinary.dat", ios::out | ios::binary | ios::app);
     if (!binOut.is_open()) {
         std::cerr << "binOut open failed: " << std::strerror(errno) << "\n";
         ASSERT_TRUE(0);
     }
-    binOut >> c;
-    ASSERT_TRUE(!strcmp(a.getStr(), c.getStr()));
-    binOut >> c;
-    ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
+    a.writeInBinary(binOut);
+    b.writeInBinary(binOut);
     binOut.close();
+    ifstream binIn("../readFromBinary.dat", ios::in | ios::binary);
+    if (!binIn.is_open()) {
+        std::cerr << "binIn open failed: " << std::strerror(errno) << "\n";
+        ASSERT_TRUE(0);
+    }
+    c.readFromBinary(binIn);
+    ASSERT_TRUE(!strcmp(a.getStr(), c.getStr()));
+    c.readFromBinary(binIn);
+    ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
+    binIn.close();
 }
 
 
@@ -162,8 +161,8 @@ TEST(lab4, MixedFractionsArifmeticOperationsTests) {
     ASSERT_THROW(a / d, exception);
 }
 
-TEST(lab5, FractionStackTest) {
-    List<Fraction> List;
+TEST(lab5, stackTest) {
+    List List;
     Fraction a(1, 3);
     Fraction b(1, 6);
     MixedFractions c(1, 1, 6);
@@ -182,34 +181,4 @@ TEST(lab5, FractionStackTest) {
     ASSERT_STREQ(List[3].getStr(), "1|1/6");
     ASSERT_STREQ(List[4].getStr(), "1/6");
     ASSERT_STREQ(List[5].getStr(), "1/3");
-}
-
-TEST(lab7, IntStackTest) {
-    List<int> intList;
-    int num1 = 1;
-    int num2 = 2;
-    intList.pushFront(num1);
-    intList.pushFront(num2);
-    ASSERT_EQ(intList[0], 2);
-    ASSERT_EQ(intList[1], 1);
-}
-
-TEST(lab7, CharStackTest) {
-    List<char> charList;
-    char char1 = 'a';
-    char char2 = 'b';
-    charList.pushFront(char1);
-    charList.pushFront(char2);
-    ASSERT_EQ(charList[0], 'b');
-    ASSERT_EQ(charList[1], 'a');
-}
-
-TEST(lab7, FloatStackTest) {
-    List<float> floatList;
-    float float1 = 1.1;
-    float float2 = 2.2;
-    floatList.pushFront(float1);
-    floatList.pushFront(float2);
-    ASSERT_FLOAT_EQ(floatList[0], 2.2);
-    ASSERT_FLOAT_EQ(floatList[1], 1.1);
 }

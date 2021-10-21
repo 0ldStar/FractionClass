@@ -175,7 +175,6 @@ void Fraction::readFromBinary(istream &is) {
     is.read((char *) this, sizeof(Fraction));
     str = nullptr;
     strConstruct();
-    //is.seekg(sizeof(Fraction), ios::cur);
 }
 
 void Fraction::writeInBinary(ostream &os) {
