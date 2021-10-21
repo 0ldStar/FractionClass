@@ -1,14 +1,3 @@
-//#define CATCH_CONFIG_RUNNER
-
-//#include "catch.hpp"
-#include <iostream>
-#include <cstring>
-#include <optional>
-#include <fstream>
-#include "Fraction.h"
-#include "CompleteFracion.h"
-#include "MixedFractions.h"
-#include "List.h"
 #include "gtest/gtest.h"
 
 using namespace std;
