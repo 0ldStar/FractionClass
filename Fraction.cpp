@@ -87,20 +87,6 @@ Fraction &Fraction::operator=(const Fraction &right) {
     return *this;
 }
 
-Fraction::operator float() const { return (float) this->numerator / (float) this->denominator; }
-
-ostream &operator<<(ostream &os, const Fraction &one) {
-    os << one.str;
-    return os;
-}
-
-istream &operator>>(istream &is, Fraction &one) {
-    char c = ' ';
-    is >> one.numerator >> c >> one.denominator;
-    one.strConstruct();
-    return is;
-}
-
 char *Fraction::getStr() { return this->str; }
 
 void Fraction::strConstruct() {

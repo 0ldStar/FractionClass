@@ -31,13 +31,7 @@ public:
 
     friend Fraction operator/(const Fraction &left, const Fraction &right);
 
-    friend ostream &operator<<(ostream &os, const Fraction &p);
-
-    friend istream &operator>>(istream &is, Fraction &p);
-
     Fraction &operator=(const Fraction &right);
-
-    operator float() const;
 
     ~Fraction();
 
