@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.19)
 project(laba3_1_5)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
-add_executable(laba3_1_5 main.cpp Fraction.cpp Fraction.h tests.cpp)
+add_executable(laba3_1_5 main.cpp Fraction.cpp Fraction.h MixedFractions.cpp MixedFractions.h CompleteFracion.cpp CompleteFracion.h Google_tests/test.cpp)
+add_subdirectory(Google_tests)
 
-#find_package(Catch2 3 REQUIRED)
-# These tests can use the Catch2-provided main
-#target_link_libraries(laba3_1_5 PRIVATE Catch2::Catch2)
+target_link_libraries(laba3_1_5 gtest gtest_main )

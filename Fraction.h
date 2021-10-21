@@ -13,55 +13,49 @@ using namespace std;
 
 class Fraction {
 public:
-    // Конструктор по умолчанию
     Fraction();
 
-    //Конструктор коппирования
     Fraction(Fraction &a);
 
-    //Конструктор с параметрами
+    Fraction(Fraction const &b);
+
     Fraction(int numerator, int denominator);
 
-    //Метод получения поля строкового представления объекта
-    char *getStr();
+    virtual char *getStr();
 
-    //перегруженный оператор сложения
     friend Fraction operator+(const Fraction &left, const Fraction &right);
 
-    //перегруженный оператор вычетания
     friend Fraction operator-(const Fraction &left, const Fraction &right);
 
-    //перегруженный оператор умножения
     friend Fraction operator*(const Fraction &left, const Fraction &right);
 
-    //перегруженный оператор деления
     friend Fraction operator/(const Fraction &left, const Fraction &right);
 
-    //перегруженный оперетор присвоения
+    friend ostream &operator<<(ostream &os, const Fraction &p);
+
+    friend istream &operator>>(istream &is, Fraction &p);
+
     Fraction &operator=(const Fraction &right);
 
-//детсруктор
+    operator float() const;
+
     ~Fraction();
 
-private:
-    //метод сокращения дроби
-    void reduction();
-
-    //статичный метод определения НОД
-    static int NOD(int a, int b);
-
-    //статичный метод определения НОК
     static int NOK(int a, int b);
 
-    //метод построения строкового представления
+protected:
+    void reduction();
+
+    static int NOD(int a, int b);
+
     void strConstruct();
 
-    //статичный метод подсчета количества цифр в числе
     static int countCalc(int num);
 
-    int numerator; //поле числителя
-    int denominator; //поле знаменателя
-    char *str; //поле строкового представления
+    int numerator;
+    int denominator;
+    char *str;
+
 };
 
 
