@@ -8,11 +8,10 @@
 #include "Fraction.h"
 
 struct node {
-    node *prev;
     node *next;
     Fraction &fraction;
 
-    node(Fraction &_fraction) : prev(nullptr), next(nullptr), fraction(_fraction) {}
+    node(Fraction &_fraction) : next(nullptr), fraction(_fraction) {}
 };
 
 #endif //LABA3_1_5_NODE_H

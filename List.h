@@ -33,7 +33,6 @@ public:
             begin = tmp;
             end = tmp;
         } else {
-            begin->prev = tmp;
             tmp->next = begin;
             begin = tmp;
         }
