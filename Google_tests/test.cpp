@@ -229,12 +229,11 @@ TEST(lab8, intQueue) {
     for (int i = 0; i < 10000; ++i) {
         q.push(rand() % 10000);
     }
-
+    sort(begin(q.back(), end(q.front())));
     int end = clock();
     cout << end - start;
 }
 /*
-
 TEST(lab8, intMap) {
     map<int, int> q;
     q.push(1);
@@ -250,5 +249,4 @@ TEST(lab8, intMap) {
 
     int end = clock();
     cout << end - start;
-}
-*/
+}*/
