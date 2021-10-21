@@ -172,13 +172,14 @@ Fraction::Fraction(Fraction const &b) {
 }
 
 void Fraction::readFromBinary(istream &is) {
-    is.read((char *) this, sizeof(Fraction));
+    is.read((char *) &numerator, sizeof(int));
+    is.read((char *) &denominator, sizeof(int));
     str = nullptr;
     strConstruct();
-    //is.seekg(sizeof(Fraction), ios::cur);
 }
 
 void Fraction::writeInBinary(ostream &os) {
-    os.write((char *) this, sizeof(Fraction));
+    os.write((char *) &numerator, sizeof(int));
+    os.write((char *) &denominator, sizeof(int));
 
 }

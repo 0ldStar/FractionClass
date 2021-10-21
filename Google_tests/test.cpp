@@ -75,7 +75,7 @@ TEST(lab3, fileSteamTest) {
     ASSERT_TRUE(!strcmp(b.getStr(), c.getStr()));
     fileIn.close();
 
-    ofstream binOut("../readFromBinary.dat", ios::out | ios::binary | ios::app);
+    ofstream binOut("../readFromBinary.dat", ios::out | ios::binary );
     if (!binOut.is_open()) {
         std::cerr << "binOut open failed: " << std::strerror(errno) << "\n";
         ASSERT_TRUE(0);
