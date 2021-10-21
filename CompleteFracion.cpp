@@ -16,4 +16,4 @@ CompleteFracion::CompleteFracion(CompleteFracion &a) : CompleteFracion(a.numerat
 
 
 
-double CompleteFracion::getRez() { return this->rez; }
+double CompleteFracion::getRes() { return this->rez; }

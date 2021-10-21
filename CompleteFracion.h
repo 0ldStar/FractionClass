@@ -14,7 +14,7 @@ public:
     CompleteFracion(CompleteFracion &a);
 
     CompleteFracion(int numerator, int denominator);
-    double getRez();
+    double getRes();
 
 private:
     double rez;
