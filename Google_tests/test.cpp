@@ -182,3 +182,9 @@ TEST(lab5, stackTest) {
     ASSERT_STREQ(List[4].getStr(), "1/6");
     ASSERT_STREQ(List[5].getStr(), "1/3");
 }
+
+TEST(lab5, listCorrectWorkCheck) {
+    List list;
+    list.popFront();
+    ASSERT_THROW(list[1], exception);
+}
