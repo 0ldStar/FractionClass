@@ -218,6 +218,7 @@ TEST(lab7, FloatStackTest) {
 }
 
 TEST(lab8, intQueue) {
+    cout << "Queue" << endl;
     queue<int> q;
     q.push(1);
     ASSERT_EQ(q.front(), 1);
@@ -229,24 +230,28 @@ TEST(lab8, intQueue) {
     for (int i = 0; i < 10000; ++i) {
         q.push(rand() % 10000);
     }
-    sort(begin(q.back(), end(q.front())));
-    int end = clock();
-    cout << end - start;
+    cout << "Add : " << clock() - start << endl;
+    start = clock();
+    while (!q.empty()) {
+        q.pop();
+    }
+    cout << "Pop : " << clock() - start << endl;
 }
-/*
+
 TEST(lab8, intMap) {
-    map<int, int> q;
-    q.push(1);
-    ASSERT_EQ(q.front(), 1);
-    q.push(2);
-    q.pop();
-    ASSERT_EQ(q.front(), 2);
+    cout << "Map" << endl;
+    map<int, int> m;
+    m.insert(make_pair(1, 1));
+    ASSERT_EQ(m[1], 1);
     srand(time(nullptr));
     int start = clock();
     for (int i = 0; i < 10000; ++i) {
-        q.push(rand() % 10000);
+        m.insert(make_pair(i, rand() % 10000));
     }
-
-    int end = clock();
-    cout << end - start;
-}*/
+    cout << "Add : " << clock() - start << endl;
+    start = clock();
+    for (int i = 0; i < 10000; ++i) {
+        m.find(i);
+    }
+    cout << "Find : " << clock() - start << endl;
+}
