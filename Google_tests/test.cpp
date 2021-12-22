@@ -10,6 +10,7 @@
 #include <queue>
 #include <map>
 #include <ctime>
+#include <set>
 
 #include <fstream>
 
@@ -254,4 +255,9 @@ TEST(lab8, intMap) {
         m.find(i);
     }
     cout << "Find : " << clock() - start << endl;
+    multiset<Fraction> multiset1;
+    Fraction a(1, 2);
+    multiset1.insert(a);
+    multimap<Fraction, int> multimap1;
+    multimap1.insert(make_pair(a, 1));
 }

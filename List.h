@@ -13,50 +13,17 @@ template<typename T>
 
 class List {
 public:
-    List() : begin(nullptr), end(nullptr) {}
+    List();
 
-    bool isEmpty() { return begin == nullptr; }
+    bool isEmpty();
 
-    void pushBack(T &_T) {
-        auto *tmp = new node(_T);
-        if (isEmpty()) {
-            begin = tmp;
-            end = tmp;
-        } else {
-            end->next = tmp;
-            end = tmp;
-        }
-    }
+    void pushBack(T &_T);
 
-    void pushFront(T &_T) {
-        auto *tmp = new node(_T);
-        if (isEmpty()) {
-            begin = tmp;
-            end = tmp;
-        } else {
-            begin->prev = tmp;
-            tmp->next = begin;
-            begin = tmp;
-        }
+    void pushFront(T &_T);
 
-    }
+    T &operator[](int i);
 
-    T &operator[](int i) {
-        if (begin == end) throw exception();
-        node<T> *tmp = begin;
-        for (int j = 0; j < i; ++j) {
-            tmp = tmp->next;
-            if (tmp == nullptr) throw exception();
-        }
-        return tmp->t;
-    }
-
-    void popFront() {
-        if (isEmpty()) return;
-        node<T> *tmp = begin;
-        begin = tmp->next;
-        delete tmp;
-    }
+    void popFront();
 
 private:
     node<T> *begin;
